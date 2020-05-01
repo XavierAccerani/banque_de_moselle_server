@@ -33,6 +33,7 @@ public class FournisseurService {
     }
 
     public void supprimer(final Fournisseur fournisseur) {
-        fournisseurRepository.delete(fournisseur);
+        fournisseur.setActif(false);
+        fournisseurRepository.saveAndFlush(fournisseur);
     }
 }

@@ -9,6 +9,9 @@ public class Fournisseur {
     private Long id;
 
     @Column
+    private boolean actif;
+
+    @Column
     private String nom;
 
     @Column
@@ -19,6 +22,14 @@ public class Fournisseur {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(final boolean actif) {
+        this.actif = actif;
     }
 
     public String getNom() {

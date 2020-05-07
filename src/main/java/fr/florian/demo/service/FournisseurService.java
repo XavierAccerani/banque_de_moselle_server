@@ -25,6 +25,7 @@ public class FournisseurService {
     }
 
     public Fournisseur ajouter(final Fournisseur fournisseur) {
+        fournisseur.setActif(true);
         return fournisseurRepository.saveAndFlush(fournisseur);
     }
 

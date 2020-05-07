@@ -24,6 +24,10 @@ public class Commande {
         lignesCommandes = new ArrayList<>();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getNumero() {
         return numero;
     }

@@ -12,8 +12,7 @@ public class AgenceService {
 
     private final AgenceRepository agenceRepository;
 
-    public AgenceService(final AgenceRepository agenceRepository)
-    {
+    public AgenceService(final AgenceRepository agenceRepository) {
         this.agenceRepository = agenceRepository;
     }
 

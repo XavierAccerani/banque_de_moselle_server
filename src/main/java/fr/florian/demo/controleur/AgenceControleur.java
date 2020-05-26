@@ -35,7 +35,7 @@ public class AgenceControleur {
         final Agence agence = new Agence();
         agence.setNom(agenceForm.getNom());
         agence.setAdresse(agenceForm.getAdresse());
-        agence.setAdresse(agenceForm.getTypeAgence());
+        agence.setTypeAgence(agenceForm.getTypeAgence());
         return agenceService.ajouter(agence);
     }
 

@@ -39,7 +39,7 @@ public class AgenceControleur {
         return agenceService.ajouter(agence);
     }
 
-    @PostMapping(value = "{id}")
+    @PutMapping(value = "{id}")
     public ResponseEntity<Agence> modifier(final @PathVariable Long id,
                                            final @Valid @RequestBody AgenceForm agenceForm) {
         return agenceService.findOne(id)

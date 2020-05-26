@@ -1,8 +1,8 @@
 package fr.florian.demo.modele;
 
 import javax.persistence.*;
-import java.util.List;
 
+@Entity
 public class Agence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

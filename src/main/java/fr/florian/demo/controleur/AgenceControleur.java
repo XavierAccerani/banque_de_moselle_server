@@ -1,8 +1,6 @@
 package fr.florian.demo.controleur;
 
 import fr.florian.demo.form.AgenceForm;
-import fr.florian.demo.form.AgenceForm;
-import fr.florian.demo.modele.Agence;
 import fr.florian.demo.modele.Agence;
 import fr.florian.demo.service.AgenceService;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +34,7 @@ public class AgenceControleur {
         final Agence agence = new Agence();
         agence.setNom(agenceForm.getNom());
         agence.setAdresse(agenceForm.getAdresse());
-        agence.setTypeAgence(agenceForm.getTypeAgence);
+        agence.setTypeAgence(agenceForm.getTypeAgence());
         return agenceService.ajouter(agence);
     }
 
@@ -46,8 +44,8 @@ public class AgenceControleur {
         return agenceService.findOne(id)
                             .map(agenceAModifier -> {
                                 agenceAModifier.setNom(agenceForm.getNom());
-                                agenceAModifenceier.setAdresse(agenceForm.getAdresse());
-                                return ResponseEntity.ok().body(agenceService.modifier(agAModifier));
+                                agenceAModifier.setAdresse(agenceForm.getAdresse());
+                                return ResponseEntity.ok().body(agenceService.modifier(agenceAModifier));
                             })
                             .orElse(ResponseEntity.notFound().build());
     }
@@ -62,4 +60,4 @@ public class AgenceControleur {
                             .orElse(ResponseEntity.notFound().build());
     }
 }
-}
+

@@ -17,6 +17,14 @@ public class Commande {
     @JoinColumn
     private Fournisseur fournisseur;
 
+    /**
+     * Ajout d'une jointure entre les deux tables
+     * Une commande concerne une seule agence
+     */
+    @ManyToOne
+    @JoinColumn
+    private Agence agence;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LigneCommande> lignesCommandes;
 

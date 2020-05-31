@@ -20,6 +20,14 @@ public class Article {
     @Column
     private double tauxTva;
 
+    /**
+     * Ajout d'une jointure entre les deux tables
+     * Un article appartient au catalogue d'1 seul fournisseur
+     */
+    @ManyToOne
+    @JoinColumn
+    private Article article;
+
     public Article() {}
 
     public Long getId() {

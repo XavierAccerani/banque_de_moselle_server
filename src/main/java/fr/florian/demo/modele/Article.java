@@ -26,7 +26,7 @@ public class Article {
      */
     @ManyToOne
     @JoinColumn
-    private Article article;
+    private Fournisseur fournisseur;
 
     public Article() {}
 

@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fournisseurs")
-@CrossOrigin
 public class FournisseurControleur {
 
     private final FournisseurService fournisseurService;

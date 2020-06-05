@@ -2,6 +2,7 @@ package fr.florian.demo.service;
 
 import fr.florian.demo.modele.Fournisseur;
 import fr.florian.demo.repo.FournisseurRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class FournisseurService {
     }
 
     public List<Fournisseur> findAll() {
-        return fournisseurRepository.findAll();
+        return fournisseurRepository.findAll(Sort.by(new Sort.Order(Sort.Direction.ASC, "nom").ignoreCase()));
     }
 
     public Optional<Fournisseur> findOne(final Long id) {

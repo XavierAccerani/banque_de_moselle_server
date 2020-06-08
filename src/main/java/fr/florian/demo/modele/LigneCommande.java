@@ -20,6 +20,15 @@ public class LigneCommande {
     @Column
     private double quantite;
 
+    /**
+     * Ajout d'une jointure entre les deux tables
+     * Une LigneCommande concerne 1 seul article
+     */
+    @ManyToOne
+    @JoinColumn
+    private Article article;
+
+
     public LigneCommande() {
     }
 

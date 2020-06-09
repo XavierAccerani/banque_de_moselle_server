@@ -30,8 +30,8 @@ public class FournisseurControleur {
     @GetMapping(value = "{id}")
     public ResponseEntity<Fournisseur> getOne(final @PathVariable Long id) {
         return fournisseurService.findOne(id)
-                                 .map(fournisseur -> ResponseEntity.ok().body(fournisseur))
-                                 .orElse(ResponseEntity.notFound().build());
+                .map(fournisseur -> ResponseEntity.ok().body(fournisseur))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -46,21 +46,21 @@ public class FournisseurControleur {
     public ResponseEntity<Fournisseur> modifier(final @PathVariable Long id,
                                                 final @Valid @RequestBody FournisseurForm fournisseurForm) {
         return fournisseurService.findOne(id)
-                                 .map(fournisseurAModifier -> {
-                                     fournisseurAModifier.setNom(fournisseurForm.getNom());
-                                     fournisseurAModifier.setSiret(fournisseurForm.getSiret());
-                                     return ResponseEntity.ok().body(fournisseurService.modifier(fournisseurAModifier));
-                                 })
-                                 .orElse(ResponseEntity.notFound().build());
+                .map(fournisseurAModifier -> {
+                    fournisseurAModifier.setNom(fournisseurForm.getNom());
+                    fournisseurAModifier.setSiret(fournisseurForm.getSiret());
+                    return ResponseEntity.ok().body(fournisseurService.modifier(fournisseurAModifier));
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping(value = "{id}")
     public ResponseEntity<?> supprimer(final @PathVariable Long id) {
         return fournisseurService.findOne(id)
-                                 .map(fournisseur -> {
-                                     fournisseurService.supprimer(fournisseur);
-                                     return ResponseEntity.ok().build();
-                                 })
-                                 .orElse(ResponseEntity.notFound().build());
+                .map(fournisseur -> {
+                    fournisseurService.supprimer(fournisseur);
+                    return ResponseEntity.ok().build();
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 }

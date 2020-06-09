@@ -48,17 +48,17 @@ public class CommandeService {
     }
 
     public Commande signer(final Commande commande) {
-        commande.getEtat().rediger(commande);
+        commande.getEtat().signer(commande);
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande envoyer(final Commande commande) {
-        commande.getEtat().rediger(commande);
+        commande.getEtat().envoyer(commande);
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande receptionner(final Commande commande) {
-        commande.getEtat().rediger(commande);
+        commande.getEtat().receptionner(commande);
         return commandeRepository.saveAndFlush(commande);
     }
 }

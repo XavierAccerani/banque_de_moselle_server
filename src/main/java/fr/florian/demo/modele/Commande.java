@@ -94,7 +94,7 @@ public class Commande {
         etat.signer(this);
     }
 
-    public void envoye() {
+    public void envoyer() {
         etat.signer(this);
     }
 

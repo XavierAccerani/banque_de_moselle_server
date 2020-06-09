@@ -1,8 +1,6 @@
 package fr.florian.demo.controleur;
 
 import fr.florian.demo.form.UtilisateurForm;
-import fr.florian.demo.modele.Utilisateur;
-import fr.florian.demo.service.UtilisateurService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,6 @@
 package fr.florian.demo.controleur;
 
 import fr.florian.demo.modele.User;
-import fr.florian.demo.service.UserService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.ldap.userdetails.LdapUserDetails;

@@ -1,12 +1,16 @@
 package fr.florian.demo;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
+=======
+>>>>>>> matthieu-master
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+<<<<<<< HEAD
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
@@ -21,12 +25,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static org.springframework.http.HttpStatus.OK;
+=======
+import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
+>>>>>>> matthieu-master
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+<<<<<<< HEAD
     private final RESTAuthenticationEntryPoint authenticationEntryPoint;
     private final RESTAuthenticationSuccessHandler authenticationSuccessHandler;
     private final RESTAuthenticationFailureHandler authenticationFailureHandler;
@@ -37,10 +45,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.authenticationFailureHandler = authenticationFailureHandler;
     }
 
+=======
+>>>>>>> matthieu-master
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
 
+<<<<<<< HEAD
         http.cors();
         http.csrf().disable();
         http.authorizeRequests()
@@ -49,11 +60,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.formLogin().successHandler(authenticationSuccessHandler);
         http.formLogin().failureHandler(authenticationFailureHandler);
+=======
+        http.authorizeRequests()
+                .antMatchers("/h2/**").permitAll()
+                .anyRequest().fullyAuthenticated()
+                .and()
+                .formLogin();
+>>>>>>> matthieu-master
     }
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.ldapAuthentication()
+<<<<<<< HEAD
             .userDnPatterns("uid={0},ou=people")
             .groupSearchBase("ou=groups")
             .contextSource()
@@ -91,5 +110,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                             final AuthenticationException exception) throws IOException, ServletException {
             super.onAuthenticationFailure(request, response, exception);
         }
+=======
+                .userDnPatterns("uid={0},ou=people")
+                .groupSearchBase("ou=groups")
+                .contextSource()
+                .url("ldap://localhost:8389/dc=banquemoselle,dc=org")
+                .and()
+                .passwordCompare()
+                .passwordEncoder(new LdapShaPasswordEncoder())
+                .passwordAttribute("userPassword");
+>>>>>>> matthieu-master
     }
 }

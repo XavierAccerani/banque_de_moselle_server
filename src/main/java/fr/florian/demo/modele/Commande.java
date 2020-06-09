@@ -33,6 +33,11 @@ public class Commande {
     @Transient
     private EtatsCommande etat;
 
+    // Il faut p-ê un attribut permettant de connaître l'état d'une commande si on la récupère depuis la BdD
+    @Column
+    private String descriptifEtat;
+
+
     public Commande() {
         lignesCommandes = new ArrayList<>();
     }
@@ -79,6 +84,14 @@ public class Commande {
 
     public void setEtat(EtatsCommande etat) {
         this.etat = etat;
+    }
+
+    public String getDescriptifEtat() {
+        return descriptifEtat;
+    }
+
+    public void setDescriptifEtat(String etatActuel) {
+        this.descriptifEtat = etatActuel;
     }
 
     // Méthodes de la classe Commande liées au design pattern State

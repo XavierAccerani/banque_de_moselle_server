@@ -29,5 +29,6 @@ public class Receptionnee implements EtatsCommande {
     @Override
     public void receptionner(Commande commande) {
         commande.setEtat(new Receptionnee());
+        commande.setDescriptifEtat("Réceptionnée");
     }
 }

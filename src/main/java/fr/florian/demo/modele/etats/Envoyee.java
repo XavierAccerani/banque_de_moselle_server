@@ -24,10 +24,12 @@ public class Envoyee implements EtatsCommande {
     @Override
     public void envoyer(Commande commande) {
         commande.setEtat(new Envoyee());
+        commande.setDescriptifEtat("Envoyée");
     }
 
     @Override
     public void receptionner(Commande commande) {
         commande.setEtat(new Receptionnee());
+        commande.setDescriptifEtat("Réceptionnée");
     }
 }

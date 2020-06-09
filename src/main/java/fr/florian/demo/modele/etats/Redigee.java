@@ -9,6 +9,7 @@ public class Redigee implements EtatsCommande {
     @Override
     public void rediger(Commande commande) {
         commande.setEtat(new Redigee());
+        commande.setDescriptifEtat("Rédigée");
     }
 
     @Override
@@ -29,5 +30,6 @@ public class Redigee implements EtatsCommande {
     @Override
     public void receptionner(Commande commande) {
        commande.setEtat(new Receptionnee());
+       commande.setDescriptifEtat("Réceptionnée");
     }
 }

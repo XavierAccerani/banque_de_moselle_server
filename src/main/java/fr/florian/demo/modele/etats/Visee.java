@@ -14,6 +14,7 @@ public class Visee implements EtatsCommande {
     @Override
     public void viser(Commande commande) {
         commande.setEtat(new Visee());
+        commande.setDescriptifEtat("Visée");
     }
 
     @Override
@@ -29,5 +30,6 @@ public class Visee implements EtatsCommande {
     @Override
     public void receptionner(Commande commande) {
         commande.setEtat(new Receptionnee());
+        commande.setDescriptifEtat("Réceptionnée");
     }
 }

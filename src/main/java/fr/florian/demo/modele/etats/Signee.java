@@ -19,6 +19,7 @@ public class Signee implements EtatsCommande {
     @Override
     public void signer(Commande commande) {
         commande.setEtat(new Signee());
+        commande.setDescriptifEtat("Signée");
     }
 
     @Override
@@ -29,5 +30,6 @@ public class Signee implements EtatsCommande {
     @Override
     public void receptionner(Commande commande) {
         commande.setEtat(new Receptionnee());
+        commande.setDescriptifEtat("Réceptionnée");
     }
 }

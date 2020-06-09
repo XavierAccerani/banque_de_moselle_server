@@ -35,4 +35,30 @@ public class CommandeService {
     public void supprimer(final Commande commande) {
         commandeRepository.delete(commande);
     }
+
+    // Ajout de méthodes permettant de sauvegarder automatiquement l'état d'une commande ?
+    public Commande rediger(final Commande commande) {
+        commande.getEtat().rediger(commande);
+        return commandeRepository.saveAndFlush(commande);
+    }
+
+    public Commande viser(final Commande commande) {
+        commande.getEtat().viser(commande);
+        return commandeRepository.saveAndFlush(commande);
+    }
+
+    public Commande signer(final Commande commande) {
+        commande.getEtat().rediger(commande);
+        return commandeRepository.saveAndFlush(commande);
+    }
+
+    public Commande envoyer(final Commande commande) {
+        commande.getEtat().rediger(commande);
+        return commandeRepository.saveAndFlush(commande);
+    }
+
+    public Commande receptionner(final Commande commande) {
+        commande.getEtat().rediger(commande);
+        return commandeRepository.saveAndFlush(commande);
+    }
 }

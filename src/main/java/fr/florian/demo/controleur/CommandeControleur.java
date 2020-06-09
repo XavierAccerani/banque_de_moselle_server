@@ -63,4 +63,9 @@ public class CommandeControleur {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    /**
+     *  Il faut ici contrôler les appels clients sur les méthodes des états d'une commande
+     *  Contrôles sur rediger, viser, signer, envoyer, receptionner
+     */
 }

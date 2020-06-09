@@ -1,5 +1,7 @@
 package fr.florian.demo.modele;
 
+import fr.florian.demo.modele.etats.EtatsCommande;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,9 @@ public class Commande {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LigneCommande> lignesCommandes;
+
+    @Transient
+    private EtatsCommande etat;
 
     public Commande() {
         lignesCommandes = new ArrayList<>();
@@ -58,6 +63,43 @@ public class Commande {
 
     public void setLignesCommandes(final List<LigneCommande> lignesCommandes) {
         this.lignesCommandes = lignesCommandes;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
+    }
+
+    public EtatsCommande getEtat() {
+        return etat;
+    }
+
+    public void setEtat(EtatsCommande etat) {
+        this.etat = etat;
+    }
+
+    // Méthodes de la classe Commande liées au design pattern State
+    public void rediger() {
+        etat.rediger(this);
+    }
+
+    public void viser() {
+        etat.viser(this);
+    }
+
+    public void signer() {
+        etat.signer(this);
+    }
+
+    public void envoye() {
+        etat.signer(this);
+    }
+
+    public void receptionner() {
+        etat.receptionner(this);
     }
 }
 

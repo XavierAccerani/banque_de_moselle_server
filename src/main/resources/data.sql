@@ -3,8 +3,8 @@ INSERT INTO fournisseur (nom, siret, actif) VALUES ('google', '2222', 1);
 
 commit;
 
-INSERT INTO commande (numero, fournisseur_id) VALUES ('1234', 1);
-INSERT INTO commande (numero, fournisseur_id) VALUES ('5678', 2);
+INSERT INTO commande (numero, etat, fournisseur_id) VALUES ('1234', 10, 1);
+INSERT INTO commande (numero, etat, fournisseur_id) VALUES ('5678', 10, 2);
 
 commit;
 

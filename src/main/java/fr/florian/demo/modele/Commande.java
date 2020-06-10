@@ -1,6 +1,6 @@
 package fr.florian.demo.modele;
 
-import fr.florian.demo.modele.etats.EtatsCommande;
+import fr.florian.demo.modele.etat.EtatCommande;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,13 +30,8 @@ public class Commande {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LigneCommande> lignesCommandes;
 
-    @Transient
-    private EtatsCommande etat;
-
-    // Il faut p-ê un attribut permettant de connaître l'état d'une commande si on la récupère depuis la BdD
     @Column
-    private String descriptifEtat;
-
+    private EtatCommande etat;
 
     public Commande() {
         lignesCommandes = new ArrayList<>();
@@ -78,11 +73,11 @@ public class Commande {
         this.agence = agence;
     }
 
-    public EtatsCommande getEtat() {
+    public EtatCommande getEtat() {
         return etat;
     }
 
-    public void setEtat(EtatsCommande etat) {
+    public void setEtat(EtatCommande etat) {
         this.etat = etat;
     }
 
@@ -95,6 +90,10 @@ public class Commande {
     }
 
     // Méthodes de la classe Commande liées au design pattern State
+    public void creer() {
+        etat.creer(this);
+    }
+
     public void rediger() {
         etat.rediger(this);
     }
@@ -114,5 +113,8 @@ public class Commande {
     public void receptionner() {
         etat.receptionner(this);
     }
-}
 
+    public void archiver() {
+        etat.archiver(this);
+    }
+}

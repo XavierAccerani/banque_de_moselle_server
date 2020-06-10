@@ -25,10 +25,12 @@ public class CommandeService {
     }
 
     public Commande ajouter(final Commande commande) {
+        commande.creer();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande modifier(final Commande commande) {
+        commande.creer();
         return commandeRepository.saveAndFlush(commande);
     }
 
@@ -36,29 +38,36 @@ public class CommandeService {
         commandeRepository.delete(commande);
     }
 
-    // Ajout de méthodes permettant de sauvegarder automatiquement l'état d'une commande ?
+
+    // Méthodes liées aux états d'une commande
+    // La méthode creer() est présente dans les méthodes ajouter() et modifier()
     public Commande rediger(final Commande commande) {
-        commande.getEtat().rediger(commande);
+        commande.rediger();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande viser(final Commande commande) {
-        commande.getEtat().viser(commande);
+        commande.viser();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande signer(final Commande commande) {
-        commande.getEtat().signer(commande);
+        commande.signer();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande envoyer(final Commande commande) {
-        commande.getEtat().envoyer(commande);
+        commande.envoyer();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande receptionner(final Commande commande) {
-        commande.getEtat().receptionner(commande);
+        commande.receptionner();
+        return commandeRepository.saveAndFlush(commande);
+    }
+
+    public Commande archiver(final Commande commande) {
+        commande.archiver();
         return commandeRepository.saveAndFlush(commande);
     }
 }

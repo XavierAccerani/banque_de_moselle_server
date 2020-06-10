@@ -46,10 +46,10 @@ public class CommandeControleur {
     public ResponseEntity<Commande> modifier(final @PathVariable Long id,
                                              final @Valid @RequestBody CommandeForm commandeForm) {
         return commandeService.findOne(id)
-                              .map(fournisseurAModifier -> {
-                                  fournisseurAModifier.setNumero(commandeForm.getNumero());
-                                  fournisseurAModifier.setFournisseur(commandeForm.getFournisseur());
-                                  return ResponseEntity.ok().body(commandeService.modifier(fournisseurAModifier));
+                              .map(commandeAModifier -> {
+                                  commandeAModifier.setNumero(commandeForm.getNumero());
+                                  commandeAModifier.setFournisseur(commandeForm.getFournisseur());
+                                  return ResponseEntity.ok().body(commandeService.modifier(commandeAModifier));
                               })
                               .orElse(ResponseEntity.notFound().build());
     }
@@ -61,6 +61,13 @@ public class CommandeControleur {
                                   commandeService.supprimer(commande);
                                   return ResponseEntity.ok().build();
                               })
+                              .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(value = "{id}/rediger")
+    public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
+        return commandeService.findOne(id)
+                              .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
                               .orElse(ResponseEntity.notFound().build());
     }
 }

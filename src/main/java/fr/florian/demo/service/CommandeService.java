@@ -25,14 +25,23 @@ public class CommandeService {
     }
 
     public Commande ajouter(final Commande commande) {
+        commande.creer();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public Commande modifier(final Commande commande) {
+        commande.creer();
         return commandeRepository.saveAndFlush(commande);
     }
 
     public void supprimer(final Commande commande) {
         commandeRepository.delete(commande);
+    }
+
+    // autres
+
+    public Commande rediger(final Commande commande) {
+        commande.rediger();
+        return commandeRepository.saveAndFlush(commande);
     }
 }

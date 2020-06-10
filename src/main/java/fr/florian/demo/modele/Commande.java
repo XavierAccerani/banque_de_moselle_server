@@ -1,5 +1,8 @@
 package fr.florian.demo.modele;
 
+import fr.florian.demo.modele.etat.Creee;
+import fr.florian.demo.modele.etat.EtatCommande;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +23,12 @@ public class Commande {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LigneCommande> lignesCommandes;
 
+    @Column
+    private EtatCommande etat;
+
     public Commande() {
         lignesCommandes = new ArrayList<>();
+        etat = new Creee();
     }
 
     public Long getId() {
@@ -51,5 +58,40 @@ public class Commande {
     public void setLignesCommandes(final List<LigneCommande> lignesCommandes) {
         this.lignesCommandes = lignesCommandes;
     }
-}
 
+    public EtatCommande getEtat() {
+        return etat;
+    }
+
+    public void setEtat(final EtatCommande etat) {
+        this.etat = etat;
+    }
+
+    public void creer() {
+        etat.creer(this);
+    }
+
+    public void rediger() {
+        etat.rediger(this);
+    }
+
+    public void viser() {
+        etat.viser(this);
+    }
+
+    public void signer() {
+        etat.signer(this);
+    }
+
+    public void envoyer() {
+        etat.signer(this);
+    }
+
+    public void receptionner() {
+        etat.receptionner(this);
+    }
+
+    public void archiver() {
+        etat.archiver(this);
+    }
+}

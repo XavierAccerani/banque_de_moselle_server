@@ -18,6 +18,7 @@ public class Fournisseur {
     private String siret;
 
     public Fournisseur() {
+        // vide
     }
 
     public Long getId() {

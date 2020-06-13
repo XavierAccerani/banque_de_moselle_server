@@ -8,9 +8,8 @@ import javax.persistence.Converter;
 
 @Converter(autoApply = true)
 public class EtatConvertisseur implements AttributeConverter<EtatCommande, Integer> {
-
     @Override
-    public Integer convertToDatabaseColumn(EtatCommande etatCommande) {
+    public Integer convertToDatabaseColumn(final EtatCommande etatCommande) {
         if (etatCommande == null) {
             return null;
         }
@@ -18,7 +17,7 @@ public class EtatConvertisseur implements AttributeConverter<EtatCommande, Integ
     }
 
     @Override
-    public EtatCommande convertToEntityAttribute(Integer integer) {
+    public EtatCommande convertToEntityAttribute(final Integer integer) {
         if (integer == null) {
             return null;
         }

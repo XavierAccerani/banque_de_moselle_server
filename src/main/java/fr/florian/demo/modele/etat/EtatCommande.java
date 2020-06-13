@@ -3,6 +3,9 @@ package fr.florian.demo.modele.etat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import fr.florian.demo.modele.Commande;
 
+/**
+ * Interface représentant les actions possibles pour une {@link Commande}.
+ */
 public interface EtatCommande {
 
     void creer(final Commande commande);
@@ -13,7 +16,6 @@ public interface EtatCommande {
     void receptionner(final Commande commande);
     void archiver(final Commande commande);
 
-    // Toutes les classes implémentant cette interface vont retourner ceci
     @JsonValue
     default int versJson() {
         return Etats.getNumero(this.getClass());

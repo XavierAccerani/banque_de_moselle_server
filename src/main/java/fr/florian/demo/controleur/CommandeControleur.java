@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/commandes")
+@CrossOrigin
 public class CommandeControleur {
 
     private final CommandeService commandeService;
@@ -47,12 +48,12 @@ public class CommandeControleur {
     public ResponseEntity<Commande> modifier(final @PathVariable Long id,
                                              final @Valid @RequestBody CommandeForm commandeForm) {
         return commandeService.findOne(id)
-                .map(commandeAModifier -> {
-                    commandeAModifier.setNumero(commandeForm.getNumero());
-                    commandeAModifier.setFournisseur(commandeForm.getFournisseur());
-                    return ResponseEntity.ok().body(commandeService.modifier(commandeAModifier));
-                })
-                .orElse(ResponseEntity.notFound().build());
+                              .map(commandeAModifier -> {
+                                  commandeAModifier.setNumero(commandeForm.getNumero());
+                                  commandeAModifier.setFournisseur(commandeForm.getFournisseur());
+                                  return ResponseEntity.ok().body(commandeService.modifier(commandeAModifier));
+                              })
+                              .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping(value = "{id}")
@@ -70,12 +71,6 @@ public class CommandeControleur {
      *  Contrôles sur rediger, viser, signer, envoyer, receptionner, archiver
      *  La fonction creer() est appelée par le biais des fonctions ajouter() et modifier() du service
      */
-    @PutMapping(value = "{id}/rediger")
-    public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
-        return commandeService.findOne(id)
-                .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
-                .orElse(ResponseEntity.notFound().build());
-    }
 
     @PutMapping(value = "{id}/viser")
     public ResponseEntity<Commande>viser(final @PathVariable Long id) {
@@ -111,4 +106,10 @@ public class CommandeControleur {
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.archiver(commandeAModifier)))
                 .orElse(ResponseEntity.notFound().build());
     }
+    public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
+        return commandeService.findOne(id)
+                .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+    @PutMapping(value = "{id}/rediger")
 }

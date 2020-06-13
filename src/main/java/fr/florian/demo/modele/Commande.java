@@ -1,5 +1,6 @@
 package fr.florian.demo.modele;
 
+import fr.florian.demo.modele.etat.Creee;
 import fr.florian.demo.modele.etat.EtatCommande;
 
 import javax.persistence.*;
@@ -58,6 +59,7 @@ public class Commande {
     // Constructeur
     public Commande() {
         lignesCommandes = new ArrayList<>();
+        etat = new Creee();
     }
 
     // Getters & Setters

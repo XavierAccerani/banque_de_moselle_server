@@ -3,11 +3,14 @@ package fr.florian.demo.modele.etat;
 import fr.florian.demo.modele.Commande;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
+
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 public class Visee implements EtatCommande {
     @Override
     public void creer(Commande commande) {
+        commande.setDateCreation(new Date());
         commande.setEtat(new Creee());
     }
 
@@ -23,6 +26,7 @@ public class Visee implements EtatCommande {
 
     @Override
     public void signer(Commande commande) {
+        commande.setDateSignature(new Date());
         commande.setEtat(new Signee());
     }
 

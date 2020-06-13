@@ -1,59 +1,52 @@
 package fr.florian.demo.modele.etat;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
+import java.util.function.Supplier;
 
 import static java.util.Arrays.stream;
 
 public enum Etats {
-    CREEE(10, Creee.class),
-    REDIGEE(20, Redigee.class),
-    VISEE(30, Visee.class),
-    SIGNEE(40, Signee.class),
-    ENVOYEE(50, Envoyee.class),
-    RECEPTIONNEE(60, Receptionnee.class),
-    ARCHIVEE(70, Archivee.class)
+    CREEE(10, Creee.class, Creee::new),
+    REDIGEE(20, Redigee.class, Redigee::new),
+    VISEE(30, Visee.class, Visee::new),
+    SIGNEE(40, Signee.class, Signee::new),
+    ENVOYEE(50, Envoyee.class, Envoyee::new),
+    RECEPTIONNEE(60, Receptionnee.class, Receptionnee::new),
+    ARCHIVEE(70, Archivee.class, Archivee::new)
     ;
 
-    private Integer numero;
+    private final Integer numero;
     // Class<?> permet de stocker le nom complet d'une classe
     // .class permet d'accéder au nom complet d'une classe
-    private Class<?> nomClasse;
+    private final Class<?> nomClasse;
+    private final Supplier<EtatCommande> constructeur;
 
-    Etats(final int numero, final Class<?> classe) {
+
+    Etats(final int numero, final Class<?> classe, final Supplier<EtatCommande> supplier) {
         this.numero = numero;
         this.nomClasse = classe;
+        this.constructeur = supplier;
     }
 
-    public int getNumero() {
+    private Integer getNumero() {
         return numero;
-    }
-
-    public Class<?> getNomClasse() {
-        return nomClasse;
     }
 
     public static int getNumero(final Class<?> classeATester) {
         // values() retourne toutes les valeurs d'une enum sous la forme d'un tableau
         return stream(values()).filter(v -> v.nomClasse.equals(classeATester))
-                .findFirst()
-                .get()
-                .getNumero();
+                               .findFirst()
+                               .orElseThrow(IllegalArgumentException::new)
+                               .getNumero();
         // Fonction get() -> sur les Optional, permet de récupérer l'objet retourné.
     }
 
     public static EtatCommande getEtat(final Integer numeroATester) {
-        Class<?> nomClasse = stream(values()).filter(v -> v.numero.equals(numeroATester))
+        Supplier<EtatCommande> supplier = stream(values()).filter(v -> v.numero.equals(numeroATester))
                 .findFirst()
-                .get()
-                .getNomClasse();
-
-        try {
-            Constructor<EtatCommande> constructor = (Constructor<EtatCommande>) nomClasse.getConstructor();
-            return constructor.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+                .orElseThrow(IllegalArgumentException::new)
+                .constructeur;
+        // .get() permet d'exécuter n'importe quelle fonction sans paramètre stockée dans une variable
+        // Ici, on exécute la fonction stockée dans la variable "supplier"
+        return supplier.get();
     }
 }

@@ -3,6 +3,8 @@ package fr.florian.demo.modele.etat;
 import fr.florian.demo.modele.Commande;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
+
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 public class Archivee implements EtatCommande {

@@ -4,6 +4,7 @@ import fr.florian.demo.modele.etat.EtatCommande;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -33,10 +34,33 @@ public class Commande {
     @Column
     private EtatCommande etat;
 
+    @Column
+    private Date dateCreation;
+
+    @Column
+    private Date dateRedaction;
+
+    @Column
+    private Date dateAppositionVisa;
+
+    @Column
+    private Date dateSignature;
+
+    @Column
+    private Date dateEnvoi;
+
+    @Column
+    private Date dateReception;
+
+    @Column
+    private Date dateArchivage;
+
+    // Constructeur
     public Commande() {
         lignesCommandes = new ArrayList<>();
     }
 
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -81,13 +105,62 @@ public class Commande {
         this.etat = etat;
     }
 
-    public String getDescriptifEtat() {
-        return descriptifEtat;
+    public Date getDateCreation() {
+        return dateCreation;
     }
 
-    public void setDescriptifEtat(String etatActuel) {
-        this.descriptifEtat = etatActuel;
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
     }
+
+    public Date getDateRedaction() {
+        return dateRedaction;
+    }
+
+    public void setDateRedaction(Date dateRedaction) {
+        this.dateRedaction = dateRedaction;
+    }
+
+    public Date getDateAppositionVisa() {
+        return dateAppositionVisa;
+    }
+
+    public void setDateAppositionVisa(Date dateAppositionVisa) {
+        this.dateAppositionVisa = dateAppositionVisa;
+    }
+
+    public Date getDateSignature() {
+        return dateSignature;
+    }
+
+    public void setDateSignature(Date dateSignature) {
+        this.dateSignature = dateSignature;
+    }
+
+    public Date getDateEnvoi() {
+        return dateEnvoi;
+    }
+
+    public void setDateEnvoi(Date dateEnvoi) {
+        this.dateEnvoi = dateEnvoi;
+    }
+
+    public Date getDateReception() {
+        return dateReception;
+    }
+
+    public void setDateReception(Date dateReception) {
+        this.dateReception = dateReception;
+    }
+
+    public Date getDateArchivage() {
+        return dateArchivage;
+    }
+
+    public void setDateArchivage(Date dateArchivage) {
+        this.dateArchivage = dateArchivage;
+    }
+
 
     // Méthodes de la classe Commande liées au design pattern State
     public void creer() {

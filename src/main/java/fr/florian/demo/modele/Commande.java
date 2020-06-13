@@ -180,7 +180,7 @@ public class Commande {
     }
 
     public void envoyer() {
-        etat.signer(this);
+        etat.envoyer(this);
     }
 
     public void receptionner() {

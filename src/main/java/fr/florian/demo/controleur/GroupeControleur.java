@@ -2,6 +2,7 @@ package fr.florian.demo.controleur;
 
 import fr.florian.demo.modele.Groupe;
 import fr.florian.demo.service.GroupeService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/groupes")
+@CrossOrigin
 public class GroupeControleur {
     private final GroupeService groupeService;
 

@@ -1,32 +1,34 @@
 package fr.florian.demo.modele.etat;
 
-import java.lang.reflect.Constructor;
+import java.util.function.Supplier;
 
 import static java.util.Arrays.stream;
 
 public enum Etats {
-    CREEE(10, Creee.class),
-    REDIGEE(20, Redigee.class),
-    VISEE(30, Visee.class),
-    SIGNEE(40, Signee.class),
-    ENVOYEE(50, Envoyee.class),
-    RECEPTIONNEE(60, Receptionnee.class),
-    ARCHIVEE(70, Archivee.class);
+    CREEE(10, Creee.class, Creee::new),
+    REDIGEE(20, Redigee.class, Redigee::new),
+    VISEE(30, Visee.class, Visee::new),
+    SIGNEE(40, Signee.class, Signee::new),
+    ENVOYEE(50, Envoyee.class, Envoyee::new),
+    RECEPTIONNEE(60, Receptionnee.class, Receptionnee::new),
+    ARCHIVEE(70, Archivee.class, Archivee::new);
 
     private final Integer numero;
     private final Class<?> nomClasse;
+    private final Supplier<EtatCommande> constructeur;
 
-    Etats(final int numero, final Class<?> nomClasse) {
+    Etats(final int numero, final Class<?> nomClasse, final Supplier<EtatCommande> supplier) {
         this.numero = numero;
         this.nomClasse = nomClasse;
+        this.constructeur = supplier;
     }
 
-    public Integer getNumero() {
+    private Integer getNumero() {
         return numero;
     }
 
-    public Class<?> getNomClasse() {
-        return nomClasse;
+    private Supplier<EtatCommande> getConstructeur() {
+        return constructeur;
     }
 
     public static int getNumero(final Class<?> classeATester) {
@@ -37,16 +39,11 @@ public enum Etats {
     }
 
     public static EtatCommande getEtat(final Integer numeroATester) {
-        Class<?> nomClasse = stream(values()).filter(v -> v.numero.equals(numeroATester))
-                                             .findFirst()
-                                             .orElseThrow(IllegalArgumentException::new)
-                                             .getNomClasse();
+        Supplier<EtatCommande> supplier = stream(values()).filter(v -> v.numero.equals(numeroATester))
+                                                          .findFirst()
+                                                          .orElseThrow(IllegalArgumentException::new)
+                                                          .getConstructeur();
 
-        try {
-            Constructor<EtatCommande> constructor = (Constructor<EtatCommande>) nomClasse.getConstructor();
-            return constructor.newInstance();
-        } catch (Exception e) {
-            return null;
-        }
+        return supplier.get();
     }
 }

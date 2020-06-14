@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/commandes")
-@CrossOrigin
 public class CommandeControleur {
 
     private final CommandeService commandeService;
@@ -106,10 +105,12 @@ public class CommandeControleur {
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.archiver(commandeAModifier)))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PutMapping(value = "{id}/rediger")
     public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
                 .orElse(ResponseEntity.notFound().build());
     }
-    @PutMapping(value = "{id}/rediger")
+
 }

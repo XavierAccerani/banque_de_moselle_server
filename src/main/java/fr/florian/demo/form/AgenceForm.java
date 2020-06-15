@@ -3,7 +3,6 @@ package fr.florian.demo.form;
 import javax.validation.constraints.NotEmpty;
 
 public class AgenceForm {
-
     @NotEmpty
     private String nom;
     @NotEmpty

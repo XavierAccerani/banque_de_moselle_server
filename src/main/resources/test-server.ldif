@@ -138,4 +138,3 @@ ou: viseur
 uniqueMember: uid=ben,ou=people,dc=banquemoselle,dc=org
 uniqueMember: uid=bob,ou=people,dc=banquemoselle,dc=org
 uniqueMember: uid=joe,ou=people,dc=banquemoselle,dc=org
-uniqueMember: uid=jerry,ou=people,dc=banquemoselle,dc=org

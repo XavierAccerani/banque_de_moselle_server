@@ -129,3 +129,12 @@ objectclass: groupOfUniqueNames
 cn: admins
 ou: admin
 uniqueMember: uid=ben,ou=people,dc=banquemoselle,dc=org
+
+dn: cn=viseurs,ou=groups,dc=banquemoselle,dc=org
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: viseurs
+ou: viseur
+uniqueMember: uid=ben,ou=people,dc=banquemoselle,dc=org
+uniqueMember: uid=bob,ou=people,dc=banquemoselle,dc=org
+uniqueMember: uid=joe,ou=people,dc=banquemoselle,dc=org

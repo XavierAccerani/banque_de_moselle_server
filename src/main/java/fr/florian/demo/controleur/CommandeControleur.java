@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/commandes")
-@CrossOrigin
 public class CommandeControleur {
 
     private final CommandeService commandeService;
@@ -72,6 +71,13 @@ public class CommandeControleur {
      *  La fonction creer() est appelée par le biais des fonctions ajouter() et modifier() du service
      */
 
+    @PutMapping(value = "{id}/rediger")
+    public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
+        return commandeService.findOne(id)
+                              .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
+                              .orElse(ResponseEntity.notFound().build());
+    }
+
     @PutMapping(value = "{id}/viser")
     public ResponseEntity<Commande>viser(final @PathVariable Long id) {
         return commandeService.findOne(id)
@@ -106,10 +112,4 @@ public class CommandeControleur {
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.archiver(commandeAModifier)))
                 .orElse(ResponseEntity.notFound().build());
     }
-    public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
-        return commandeService.findOne(id)
-                .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
-                .orElse(ResponseEntity.notFound().build());
-    }
-    @PutMapping(value = "{id}/rediger")
 }

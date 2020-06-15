@@ -4,6 +4,7 @@ import fr.florian.demo.form.CommandeForm;
 import fr.florian.demo.modele.Commande;
 import fr.florian.demo.service.CommandeService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -72,6 +73,7 @@ public class CommandeControleur {
      */
 
     @PutMapping(value = "{id}/rediger")
+    @Secured("ROLE_REDACTEURS")
     public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
         return commandeService.findOne(id)
                               .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
@@ -79,6 +81,7 @@ public class CommandeControleur {
     }
 
     @PutMapping(value = "{id}/viser")
+    @Secured("ROLE_VISEURS")
     public ResponseEntity<Commande>viser(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.viser(commandeAModifier)))
@@ -86,6 +89,7 @@ public class CommandeControleur {
     }
 
     @PutMapping(value = "{id}/signer")
+    @Secured("ROLE_SIGNATAIRES")
     public ResponseEntity<Commande>signer(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.signer(commandeAModifier)))
@@ -93,6 +97,7 @@ public class CommandeControleur {
     }
 
     @PutMapping(value = "{id}/envoyer")
+    @Secured("ROLE_SIGNATAIRES")
     public ResponseEntity<Commande>envoyer(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.envoyer(commandeAModifier)))
@@ -100,6 +105,7 @@ public class CommandeControleur {
     }
 
     @PutMapping(value = "{id}/receptionner")
+    @Secured("ROLE_RECEPTIONNEURS")
     public ResponseEntity<Commande>receptionner(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.receptionner(commandeAModifier)))
@@ -107,6 +113,7 @@ public class CommandeControleur {
     }
 
     @PutMapping(value = "{id}/archiver")
+    @Secured("ROLE_GESTIONNAIRES")
     public ResponseEntity<Commande>archiver(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.archiver(commandeAModifier)))

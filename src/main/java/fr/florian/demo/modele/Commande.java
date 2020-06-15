@@ -170,32 +170,26 @@ public class Commande {
         etat.creer(this);
     }
 
-    @Secured("ROLE_REDACTEURS")
     public void rediger() {
         etat.rediger(this);
     }
 
-    @Secured("ROLE_VISEURS")
     public void viser() {
         etat.viser(this);
     }
 
-    @Secured("ROLE_SIGNATAIRES")
     public void signer() {
         etat.signer(this);
     }
 
-    @Secured("ROLE_SIGNATAIRES")
     public void envoyer() {
         etat.envoyer(this);
     }
 
-    @Secured("ROLE_RECEPTIONNEURS")
     public void receptionner() {
         etat.receptionner(this);
     }
 
-    @Secured("ROLE_GESTIONNAIRES")
     public void archiver() {
         etat.archiver(this);
     }

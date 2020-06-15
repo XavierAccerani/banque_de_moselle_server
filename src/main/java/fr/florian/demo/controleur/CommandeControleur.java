@@ -41,6 +41,7 @@ public class CommandeControleur {
         final Commande commande = new Commande();
         commande.setNumero(commandeForm.getNumero());
         commande.setFournisseur(commandeForm.getFournisseur());
+        commande.setLignesCommandes(commandeForm.getLignesCommandes());
         return commandeService.ajouter(commande);
     }
 
@@ -51,6 +52,7 @@ public class CommandeControleur {
                               .map(commandeAModifier -> {
                                   commandeAModifier.setNumero(commandeForm.getNumero());
                                   commandeAModifier.setFournisseur(commandeForm.getFournisseur());
+                                  commandeAModifier.setLignesCommandes(commandeForm.getLignesCommandes());
                                   return ResponseEntity.ok().body(commandeService.modifier(commandeAModifier));
                               })
                               .orElse(ResponseEntity.notFound().build());

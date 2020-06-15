@@ -2,7 +2,6 @@ package fr.florian.demo.modele;
 
 import fr.florian.demo.modele.etat.Creee;
 import fr.florian.demo.modele.etat.EtatCommande;
-import org.springframework.security.access.annotation.Secured;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class Commande {
     private Agence agence;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LigneCommande> lignesCommandes;
+    private final List<LigneCommande> lignesCommandes;
 
     @Column
     private EtatCommande etat;
@@ -89,14 +88,17 @@ public class Commande {
     }
 
     public void setLignesCommandes(final List<LigneCommande> lignesCommandes) {
-        this.lignesCommandes = lignesCommandes;
+        this.lignesCommandes.clear();
+        if (lignesCommandes != null) {
+            this.lignesCommandes.addAll(lignesCommandes);
+        }
     }
 
     public Agence getAgence() {
         return agence;
     }
 
-    public void setAgence(Agence agence) {
+    public void setAgence(final Agence agence) {
         this.agence = agence;
     }
 

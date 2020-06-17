@@ -115,7 +115,7 @@ public class CommandeControleur {
     }
 
     @PutMapping(value = "{id}/archiver")
-    @Secured("ROLE_GESTIONNAIRES")
+    @Secured("ROLE_ADMINS")
     public ResponseEntity<Commande>archiver(final @PathVariable Long id) {
         return commandeService.findOne(id)
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.archiver(commandeAModifier)))

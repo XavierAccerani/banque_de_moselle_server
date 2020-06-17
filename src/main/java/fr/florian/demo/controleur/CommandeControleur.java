@@ -121,15 +121,4 @@ public class CommandeControleur {
                 .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.archiver(commandeAModifier)))
                 .orElse(ResponseEntity.notFound().build());
     }
-<<<<<<< HEAD
-=======
-
-    @PutMapping(value = "{id}/rediger")
-    public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
-        return commandeService.findOne(id)
-                .map(commandeAModifier -> ResponseEntity.ok().body(commandeService.rediger(commandeAModifier)))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
->>>>>>> master
 }

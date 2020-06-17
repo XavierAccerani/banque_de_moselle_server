@@ -10,7 +10,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public class Creee implements EtatCommande {
     @Override
     public void creer(Commande commande) {
-        // rien
+        commande.setDateCreation(new Date());
     }
 
     @Override

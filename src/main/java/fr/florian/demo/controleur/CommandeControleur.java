@@ -74,7 +74,7 @@ public class CommandeControleur {
      *  La fonction creer() est appelée par le biais des fonctions ajouter() et modifier() du service
      */
 
-    @PutMapping(value = "{id}/rediger")
+    @PutMapping(value = "{id}/20")
     @Secured("ROLE_REDACTEURS")
     public ResponseEntity<Commande> rediger(final @PathVariable Long id) {
         return commandeService.findOne(id)
@@ -82,7 +82,7 @@ public class CommandeControleur {
                               .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping(value = "{id}/viser")
+    @PutMapping(value = "{id}/30")
     @Secured("ROLE_VISEURS")
     public ResponseEntity<Commande>viser(final @PathVariable Long id) {
         return commandeService.findOne(id)
@@ -90,7 +90,7 @@ public class CommandeControleur {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping(value = "{id}/signer")
+    @PutMapping(value = "{id}/40")
     @Secured("ROLE_SIGNATAIRES")
     public ResponseEntity<Commande>signer(final @PathVariable Long id) {
         return commandeService.findOne(id)
@@ -98,7 +98,7 @@ public class CommandeControleur {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping(value = "{id}/envoyer")
+    @PutMapping(value = "{id}/50")
     @Secured("ROLE_SIGNATAIRES")
     public ResponseEntity<Commande>envoyer(final @PathVariable Long id) {
         return commandeService.findOne(id)
@@ -106,7 +106,7 @@ public class CommandeControleur {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping(value = "{id}/receptionner")
+    @PutMapping(value = "{id}/60")
     @Secured("ROLE_RECEPTIONNEURS")
     public ResponseEntity<Commande>receptionner(final @PathVariable Long id) {
         return commandeService.findOne(id)
@@ -114,7 +114,7 @@ public class CommandeControleur {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping(value = "{id}/archiver")
+    @PutMapping(value = "{id}/70")
     @Secured("ROLE_ADMINS")
     public ResponseEntity<Commande>archiver(final @PathVariable Long id) {
         return commandeService.findOne(id)

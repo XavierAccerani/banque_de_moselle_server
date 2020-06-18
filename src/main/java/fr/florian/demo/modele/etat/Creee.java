@@ -11,6 +11,7 @@ public class Creee implements EtatCommande {
     @Override
     public void creer(Commande commande) {
         commande.setDateCreation(new Date());
+        commande.setEtat(new Creee());
     }
 
     @Override
